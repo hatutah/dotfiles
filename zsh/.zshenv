@@ -1,3 +1,3 @@
-. "$HOME/.cargo/env"
-export VOLTA_HOME="$HOME/.volta"
-export PATH="$VOLTA_HOME/bin:$PATH"
+# Read by every zsh (login, interactive, scripts). Keep it minimal.
+typeset -U path            # drop duplicate PATH entries automatically
+. "$HOME/.cargo/env"       # rustup toolchain

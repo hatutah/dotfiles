@@ -1,3 +1,8 @@
+# History
+HISTSIZE=10000
+SAVEHIST=10000
+setopt HIST_IGNORE_DUPS EXTENDED_HISTORY
+
 # Completion
 autoload -Uz compinit && compinit
 

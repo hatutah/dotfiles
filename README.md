@@ -5,7 +5,7 @@ Each top-level folder is a stow package whose contents mirror `$HOME`.
 
 | Package | Links |
 |---------|-------|
-| `zsh`  | `~/.zshrc`, `~/.zprofile`, `~/.zshenv`, `~/.profile` |
+| `zsh`  | `~/.zshrc`, `~/.zprofile`, `~/.zshenv` |
 | `git`  | `~/.gitconfig`, `~/.config/git/ignore` |
 | `tmux` | `~/.tmux.conf` |
 | `vim`  | `~/.vimrc` |
