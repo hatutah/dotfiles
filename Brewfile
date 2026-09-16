@@ -2,8 +2,10 @@
 brew "stow"
 brew "tmux"
 brew "asdf"
-brew "fzf"        # oh-my-zsh plugin in .zshrc
-brew "zoxide"     # oh-my-zsh plugin in .zshrc
+brew "starship"
+brew "zsh-autosuggestions"
+brew "fzf"
+brew "zoxide"
 brew "worktrunk"  # `wt` shell init in .zshrc
 brew "gh"
 brew "git"
