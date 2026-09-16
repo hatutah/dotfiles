@@ -9,6 +9,7 @@ Each top-level folder is a stow package whose contents mirror `$HOME`.
 | `git`  | `~/.gitconfig`, `~/.config/git/ignore` |
 | `tmux` | `~/.tmux.conf` |
 | `vim`  | `~/.vimrc` |
+| `starship` | `~/.config/starship.toml` |
 | `claude` | `~/.claude/settings.json`, `~/.claude/skills` → `skills/` |
 
 ## Install
@@ -30,7 +31,7 @@ To do the stow step by hand:
 ```bash
 brew install stow
 cd ~/hatutah/dotfiles
-stow -t ~ zsh git tmux vim claude
+stow -t ~ zsh git tmux vim starship claude
 ```
 
 `-t ~` is needed because the repo isn't directly inside `$HOME`
