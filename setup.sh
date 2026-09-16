@@ -42,13 +42,9 @@ else
 fi
 eval "$("$BREW" shellenv)"
 
-# 4. Homebrew packages
-for pkg in stow tmux asdf; do
-  if ! command -v "$pkg" >/dev/null 2>&1; then
-    log "Installing $pkg"
-    brew install "$pkg"
-  fi
-done
+# 4. Homebrew packages listed in the Brewfile (only installs what's missing)
+log "Installing Homebrew packages from Brewfile"
+brew bundle --file="$DIR/Brewfile" --no-upgrade
 
 # 5. Link packages
 log "Linking: ${PACKAGES[*]}"

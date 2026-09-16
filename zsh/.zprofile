@@ -10,7 +10,6 @@ setopt EXTENDED_HISTORY
 #ls
 alias ls="ls -1 --color=tty"
 
-export JAVA_HOME=/Library/Java/JavaVirtualMachines/zulu-17.jdk/Contents/Home
 
 eval "$(/opt/homebrew/bin/brew shellenv)"
 export PATH="/Applications/Sublime Text.app/Contents/SharedSupport/bin:$PATH"
@@ -33,10 +32,6 @@ ulimit -f unlimited
 # 1pass ssh
 export SSH_AUTH_SOCK=~/Library/Group\ Containers/2BUA8C4S2C.com.1password/t/agent.sock
 
-# Load pyenv automatically
-export PYENV_ROOT="$HOME/.pyenv"
-[[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
-eval "$(pyenv init -)"
 
 # Added by OrbStack: command-line tools and integration
 # This won't be added again if you remove it.
