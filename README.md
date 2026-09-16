@@ -18,8 +18,8 @@ git clone git@github.com:hatutah/dotfiles.git ~/hatutah/dotfiles
 ~/hatutah/dotfiles/setup.sh
 ```
 
-`setup.sh` installs the Xcode Command Line Tools, Homebrew, stow and tmux if
-they are missing, then links every package. It refuses to overwrite files already
+`setup.sh` installs the Xcode Command Line Tools, Homebrew, stow, tmux and asdf
+if they are missing, then links every package. It refuses to overwrite files already
 in `$HOME`; run `setup.sh --adopt` to pull those into the repo instead, then
 review with `git diff`. Re-running it is safe.
 

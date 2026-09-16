@@ -43,7 +43,7 @@ fi
 eval "$("$BREW" shellenv)"
 
 # 4. Homebrew packages
-for pkg in stow tmux; do
+for pkg in stow tmux asdf; do
   if ! command -v "$pkg" >/dev/null 2>&1; then
     log "Installing $pkg"
     brew install "$pkg"
