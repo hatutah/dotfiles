@@ -1,6 +1,6 @@
 # dotfiles
 
-Personal macOS dotfiles, managed with [GNU Stow](https://www.gnu.org/software/stow/).
+Personal macOS dotfiles (zsh, git, tmux, vim, Claude Code), managed with [GNU Stow](https://www.gnu.org/software/stow/).
 Each top-level folder is a stow package whose contents mirror `$HOME`.
 
 | Package | Links |
@@ -9,6 +9,7 @@ Each top-level folder is a stow package whose contents mirror `$HOME`.
 | `git`  | `~/.gitconfig`, `~/.config/git/ignore` |
 | `tmux` | `~/.tmux.conf` |
 | `vim`  | `~/.vimrc` |
+| `claude` | `~/.claude/settings.json`, `~/.claude/skills` → `skills/` |
 
 ## Install
 
@@ -16,7 +17,7 @@ Each top-level folder is a stow package whose contents mirror `$HOME`.
 brew install stow
 git clone git@github.com:hatutah/dotfiles.git ~/hatutah/dotfiles
 cd ~/hatutah/dotfiles
-stow -t ~ zsh git tmux vim
+stow -t ~ zsh git tmux vim claude
 ```
 
 `-t ~` is needed because the repo isn't directly inside `$HOME`
@@ -25,6 +26,23 @@ stow -t ~ zsh git tmux vim
 If real files already exist in `$HOME`, stow refuses to overwrite them. Either
 move them aside, or run `stow --adopt <pkg>` to pull them into the repo and then
 check `git diff`.
+
+## Claude Code skills
+
+Skills live in the top-level `skills/` folder, one folder per skill:
+
+```
+skills/
+  my-skill/
+    SKILL.md
+```
+
+`claude/.claude/skills` is a relative symlink to `../../skills`, so stowing the
+`claude` package makes `~/.claude/skills` point at this folder. Add or edit a
+skill in `skills/` and Claude Code picks it up, with no restow needed.
+
+Only `settings.json` and `skills` are tracked from `~/.claude`; history,
+projects, caches and sessions stay local.
 
 ## Common commands
 
