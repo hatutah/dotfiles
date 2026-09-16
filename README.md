@@ -9,7 +9,6 @@ Each top-level folder is a stow package whose contents mirror `$HOME`.
 | `git`  | `~/.gitconfig`, `~/.config/git/ignore` |
 | `tmux` | `~/.tmux.conf` |
 | `vim`  | `~/.vimrc` |
-| `zed`  | `~/.config/zed/settings.json` |
 
 ## Install
 
@@ -17,7 +16,7 @@ Each top-level folder is a stow package whose contents mirror `$HOME`.
 brew install stow
 git clone git@github.com:hatutah/dotfiles.git ~/hatutah/dotfiles
 cd ~/hatutah/dotfiles
-stow -t ~ zsh git tmux vim zed
+stow -t ~ zsh git tmux vim
 ```
 
 `-t ~` is needed because the repo isn't directly inside `$HOME`
