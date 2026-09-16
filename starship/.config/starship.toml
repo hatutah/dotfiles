@@ -13,7 +13,7 @@ truncate_to_repo = false
 format = "[$path]($style) "
 
 [git_branch]
-format = "[git:(](bold blue)[$branch](bold red)[)](bold blue) "
+format = '[git:\(](bold blue)[$branch](bold red)[\)](bold blue) '
 
 # Single ✗ when the tree has any change, like robbyrussell's dirty marker
 [custom.git_dirty]
