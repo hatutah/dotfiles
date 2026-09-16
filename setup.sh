@@ -42,11 +42,13 @@ else
 fi
 eval "$("$BREW" shellenv)"
 
-# 4. GNU Stow
-if ! command -v stow >/dev/null 2>&1; then
-  log "Installing stow"
-  brew install stow
-fi
+# 4. Homebrew packages
+for pkg in stow tmux; do
+  if ! command -v "$pkg" >/dev/null 2>&1; then
+    log "Installing $pkg"
+    brew install "$pkg"
+  fi
+done
 
 # 5. Link packages
 log "Linking: ${PACKAGES[*]}"
