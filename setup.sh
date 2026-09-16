@@ -9,7 +9,7 @@
 set -euo pipefail
 
 DIR="$(cd "$(dirname "$0")" && pwd)"
-PACKAGES=(zsh git tmux vim starship claude)
+PACKAGES=(zsh git tmux vim starship ghostty claude)
 ADOPT=""
 [ "${1:-}" = "--adopt" ] && ADOPT="--adopt"
 
