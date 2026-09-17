@@ -73,4 +73,18 @@ stow -n -v <pkg>  # dry run
 Place it in a package at the same path it has under `$HOME`, e.g.
 `~/.config/foo/config` → `foo/.config/foo/config`, then `stow -R foo`.
 
+## Per-machine git settings
+
+`git/.gitconfig` holds the shared config and ends with an `[include]` of
+`~/.gitconfig.local`, which is not tracked. Put anything machine-specific
+there, e.g.:
+
+```ini
+[user]
+	signingkey = ssh-ed25519 AAAA...
+```
+
+Git ignores the include if the file is missing, so a fresh machine works
+before it exists.
+
 Never commit secrets — keep tokens in 1Password or an untracked `~/.zshrc.local`.

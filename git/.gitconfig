@@ -5,8 +5,10 @@
 [commit]
 	gpgsign = true
 [user]
-	signingkey = ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIFygF5VvX9r9DzN99wpQ3WlC1FePOvXV9rnZbckF7V56
 	name = Utah Ingersoll
 	email = hatutah@gmail.com
 [init]
 	defaultBranch = main
+[include]
+	# per-machine settings (signing key, work email, ...) - not tracked
+	path = ~/.gitconfig.local
