@@ -11,7 +11,7 @@ Each top-level folder is a stow package whose contents mirror `$HOME`.
 | `vim`  | `~/.vimrc` |
 | `starship` | `~/.config/starship.toml` |
 | `ghostty` | `~/.config/ghostty/config` |
-| `claude` | `~/.claude/settings.json`, `~/.claude/skills` → `skills/` |
+| `claude` | `~/.claude/skills` → `skills/` |
 
 ## Install
 
@@ -56,8 +56,8 @@ skills/
 `claude` package makes `~/.claude/skills` point at this folder. Add or edit a
 skill in `skills/` and Claude Code picks it up, with no restow needed.
 
-Only `settings.json` and `skills` are tracked from `~/.claude`; history,
-projects, caches and sessions stay local.
+Only `skills` is tracked from `~/.claude`; `settings.json`, history, projects,
+caches and sessions stay local and per machine.
 
 ## Common commands
 
