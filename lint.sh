@@ -3,8 +3,9 @@
 # nothing and touches nothing in $HOME, so it runs anywhere with the tools below;
 # CI runs it on Linux (.github/workflows/lint.yml). Needs bash, zsh, stow, git,
 # tmux, vim, python3 and (optionally) shellcheck.
+# shellcheck disable=SC2317   # the *_parse/*_layout functions only run via check(), which looks unreachable
 set -uo pipefail
-cd "$(dirname "$0")"
+cd "$(dirname "$0")" || exit 1
 eval "$(grep '^PACKAGES=' setup.sh)"   # same list setup.sh links
 
 fail=0
@@ -21,14 +22,14 @@ zsh_syntax() { local f; for f in "$@"; do zsh -n "$f" || return 1; done; }
 toml_parse() { python3 -c 'import sys, tomllib; tomllib.load(open(sys.argv[1], "rb"))' "$1"; }
 tmux_parse() {   # a throwaway server (needs a session to stay up); source-file reports syntax errors
   tmux -L lint -f /dev/null new-session -d && tmux -L lint source-file "$PWD/$1"
-  local rc=$?; tmux -L lint kill-server 2>/dev/null; return $rc
+  local rc=$?; tmux -L lint kill-server 2>/dev/null; return "$rc"
 }
 skill_links() {   # every skills/<x> needs claude/.claude/skills/<x> -> ../../../skills/<x>
   local s rc=0
   for s in skills/*/; do
     s=$(basename "$s")
     [ -L "claude/.claude/skills/$s" ] || { echo "missing link claude/.claude/skills/$s"; rc=1; }
-  done; return $rc
+  done; return "$rc"
 }
 stow_layout() {   # stow for real into a scratch target and look for broken links
   local t rc=0; t=$(mktemp -d)
@@ -36,7 +37,7 @@ stow_layout() {   # stow for real into a scratch target and look for broken link
   stow -t "$t" "${PACKAGES[@]}" || rc=1
   local broken; broken=$(find "$t" -type l ! -exec test -e {} \; -print)
   [ -z "$broken" ] || { echo "broken links:"; echo "$broken"; rc=1; }
-  rm -rf "$t"; return $rc
+  rm -rf "$t"; return "$rc"
 }
 
 check "bash syntax"      bash -n setup.sh lint.sh
