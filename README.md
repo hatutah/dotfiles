@@ -25,7 +25,9 @@ missing, installs everything in the `Brewfile` (stow, tmux, asdf, fzf, zoxide,
 worktrunk, gh, lazygit, direnv, uv and more), then links every package. To add
 a tool, add a line to the `Brewfile` and re-run `setup.sh`. Work or
 machine-only packages go in an untracked `Brewfile.local` next to it, which
-`setup.sh` also installs when present. It refuses to overwrite files already
+`setup.sh` also installs when present. Homebrew refuses to load formulae from
+third-party taps until you trust them once per machine, so if `Brewfile.local`
+uses one, run `brew trust <user>/<tap>` first. It refuses to overwrite files already
 in `$HOME`; run `setup.sh --adopt` to pull those into the repo instead, then
 review with `git diff`. Re-running it is safe.
 
