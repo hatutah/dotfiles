@@ -11,7 +11,7 @@ Each top-level folder is a stow package whose contents mirror `$HOME`.
 | `vim`  | `~/.vimrc` |
 | `starship` | `~/.config/starship.toml` |
 | `ghostty` | `~/.config/ghostty/config` |
-| `claude` | `~/.claude/skills` → `skills/` |
+| `claude` | `~/.claude/skills/<skill>` → `skills/<skill>` |
 
 ## Install
 
@@ -54,9 +54,21 @@ skills/
     SKILL.md
 ```
 
-`claude/.claude/skills` is a relative symlink to `../../skills`, so stowing the
-`claude` package makes `~/.claude/skills` point at this folder. Add or edit a
-skill in `skills/` and Claude Code picks it up, with no restow needed.
+`~/.claude/skills` is a real directory that Claude Code owns (it also holds
+company-synced skills), so the `claude` package does not replace it. Instead
+`claude/.claude/skills/` holds one relative symlink per skill, pointing back at
+`skills/`, and stow links each of those into `~/.claude/skills/` alongside
+whatever else is there.
+
+To add a skill, create it in `skills/`, add the matching link, and restow:
+
+```bash
+mkdir skills/my-skill && $EDITOR skills/my-skill/SKILL.md
+ln -s ../../../skills/my-skill claude/.claude/skills/my-skill
+stow -R claude
+```
+
+Editing an existing skill needs no restow.
 
 Only `skills` is tracked from `~/.claude`; `settings.json`, history, projects,
 caches and sessions stay local and per machine.
