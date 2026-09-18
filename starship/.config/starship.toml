@@ -1,6 +1,6 @@
-# Mimics oh-my-zsh's robbyrussell theme:  ➜  dir git:(branch) ✗
+# Loosely follows oh-my-zsh's robbyrussell theme:  ➜  dir git:(branch) ✗
 add_newline = false
-format = "$character$directory$git_branch${custom.git_dirty}"
+format = "$character$directory$git_branch$git_status"
 
 [character]
 success_symbol = "[➜](bold green)"
@@ -15,9 +15,18 @@ format = "[$path]($style) "
 [git_branch]
 format = '[git:\(](bold blue)[$branch](bold red)[\)](bold blue) '
 
-# Single ✗ when the tree has any change, like robbyrussell's dirty marker
-[custom.git_dirty]
-when = 'test -n "$(git status --porcelain 2>/dev/null)"'
-symbol = "✗"
+# Built-in status: cheaper than shelling out to `git status` on every prompt.
+# Prints nothing when the tree is clean.
+[git_status]
+format = '([$all_status$ahead_behind]($style) )'
 style = "bold yellow"
-format = "[$symbol]($style) "
+modified = "✗"
+staged = "+"
+untracked = "?"
+deleted = "-"
+renamed = "»"
+conflicted = "="
+stashed = ""
+ahead = "⇡"
+behind = "⇣"
+diverged = "⇕"
