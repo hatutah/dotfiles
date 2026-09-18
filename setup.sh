@@ -45,6 +45,11 @@ eval "$("$BREW" shellenv)"
 # 4. Homebrew packages listed in the Brewfile (only installs what's missing)
 log "Installing Homebrew packages from Brewfile"
 brew bundle --file="$DIR/Brewfile" --no-upgrade
+# Work/machine-only packages, untracked (see .gitignore: *.local)
+if [ -f "$DIR/Brewfile.local" ]; then
+  log "Installing Homebrew packages from Brewfile.local"
+  brew bundle --file="$DIR/Brewfile.local" --no-upgrade
+fi
 
 # 5. Link packages
 log "Linking: ${PACKAGES[*]}"
