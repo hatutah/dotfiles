@@ -6,6 +6,13 @@ setopt HIST_IGNORE_DUPS EXTENDED_HISTORY
 # Completion
 autoload -Uz compinit && compinit
 
+# Aliases (the oh-my-zsh core set worth keeping)
+alias l='ls -lah' ll='ls -lh' la='ls -lAh'
+setopt AUTO_CD AUTO_PUSHD PUSHD_IGNORE_DUPS   # bare dir name cd's; every cd feeds the stack for 1-9
+alias -- -='cd -'
+for i in 1 2 3 4 5 6 7 8 9; do alias "$i"="cd -$i"; done; unset i
+alias -g ...='../..' ....='../../..' .....='../../../..'
+
 # PATH
 export PATH="${ASDF_DATA_DIR:-$HOME/.asdf}/shims:$PATH"
 export PATH="$HOME/.local/bin:$PATH"
