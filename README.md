@@ -75,16 +75,19 @@ Place it in a package at the same path it has under `$HOME`, e.g.
 
 ## Per-machine git settings
 
-`git/.gitconfig` holds the shared config and ends with an `[include]` of
-`~/.gitconfig.local`, which is not tracked. Put anything machine-specific
-there, e.g.:
+`git/.gitconfig` holds the shared config (SSH signing via 1Password, default
+branch) and ends with an `[include]` of `~/.gitconfig.local`, which is not
+tracked. Your identity goes there, so each machine can use its own name, email
+and signing key:
 
 ```ini
 [user]
+	name = Your Name
+	email = you@example.com
 	signingkey = ssh-ed25519 AAAA...
 ```
 
-Git ignores the include if the file is missing, so a fresh machine works
-before it exists.
+Git ignores the include if the file is missing, but commits will fail until
+it exists because `commit.gpgsign` needs a key.
 
 Never commit secrets — keep tokens in 1Password or an untracked `~/.zshrc.local`.
