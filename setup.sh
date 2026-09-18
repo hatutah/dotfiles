@@ -54,10 +54,11 @@ fi
 # 5. Link packages
 log "Linking: ${PACKAGES[*]}"
 cd "$DIR"
-if ! stow -n $ADOPT "${PACKAGES[@]}" 2>&1 | grep -q 'CONFLICT'; then
+# stow exits non-zero when the dry run finds conflicts (its wording varies by version)
+if stow -n $ADOPT "${PACKAGES[@]}" >/dev/null 2>&1; then
   stow -v $ADOPT "${PACKAGES[@]}"
 else
-  stow -n $ADOPT "${PACKAGES[@]}"
+  stow -n -v $ADOPT "${PACKAGES[@]}" 2>&1 || true
   echo
   echo "Some files already exist in \$HOME. Move them aside, or re-run with" >&2
   echo "  $0 --adopt" >&2
