@@ -5,6 +5,7 @@ format = "$character$directory$git_branch$git_status"
 [character]
 success_symbol = "[➜](bold green)"
 error_symbol = "[➜](bold red)"
+vimcmd_symbol = "[❮](bold green)"   # shown while in vi command mode
 
 [directory]
 style = "bold cyan"
