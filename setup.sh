@@ -51,9 +51,21 @@ if [ -f "$DIR/Brewfile.local" ]; then
   brew bundle --file="$DIR/Brewfile.local" --no-upgrade
 fi
 
-# 5. Link packages
+# 5. zsh-history-cleaner (cargo only; rust comes from asdf, not the Brewfile)
+if ! command -v zhc >/dev/null 2>&1; then
+  if command -v cargo >/dev/null 2>&1; then
+    log "Installing zsh-history-cleaner with cargo"
+    cargo install zsh-history-cleaner
+    command -v asdf >/dev/null 2>&1 && asdf reshim rust || true
+  else
+    log "Skipping zsh-history-cleaner: cargo not found (install rust, re-run)"
+  fi
+fi
+
+# 6. Link packages
 log "Linking: ${PACKAGES[*]}"
 cd "$DIR"
+mkdir -p ~/.local/bin   # must be a real dir, or stow links the whole dir into the repo
 # stow exits non-zero when the dry run finds conflicts (its wording varies by version)
 if stow -n $ADOPT "${PACKAGES[@]}" >/dev/null 2>&1; then
   stow -v $ADOPT "${PACKAGES[@]}"

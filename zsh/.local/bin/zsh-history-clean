@@ -1,0 +1,9 @@
+#!/bin/sh
+# Dedupe ~/.zsh_history with zhc (haidaraM/zsh-history-cleaner) and drop the
+# backups it writes next to it once they are a week old. .zshrc runs this in
+# the first shell of each day; run it by hand to clean now. Logs to ~/.cache/zsh.
+mkdir -p "$HOME/.cache/zsh"
+exec >>"$HOME/.cache/zsh/history-clean.log" 2>&1
+echo "== $(date)"
+zhc
+find "$HOME" -maxdepth 1 -name '.zsh_history.zhc_backup_*' -mtime +7 -delete

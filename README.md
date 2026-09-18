@@ -5,7 +5,7 @@ Each top-level folder is a stow package whose contents mirror `$HOME`.
 
 | Package | Links |
 |---------|-------|
-| `zsh`  | `~/.zshrc`, `~/.zprofile`, `~/.zshenv` |
+| `zsh`  | `~/.zshrc`, `~/.zprofile`, `~/.zshenv`, `~/.local/bin/zsh-history-clean` |
 | `git`  | `~/.gitconfig`, `~/.config/git/ignore` |
 | `tmux` | `~/.tmux.conf` |
 | `vim`  | `~/.vimrc` |
@@ -22,7 +22,9 @@ git clone git@github.com:hatutah/dotfiles.git ~/hatutah/dotfiles
 
 `setup.sh` installs the Xcode Command Line Tools and Homebrew if they are
 missing, installs everything in the `Brewfile` (stow, tmux, asdf, fzf, zoxide,
-worktrunk, gh, lazygit, direnv, uv and more), then links every package. To add
+worktrunk, gh, lazygit, direnv, uv and more), installs
+[zsh-history-cleaner](https://github.com/haidaraM/zsh-history-cleaner) with
+cargo if `zhc` is missing, then links every package. To add
 a tool, add a line to the `Brewfile` and re-run `setup.sh`. Work or
 machine-only packages go in an untracked `Brewfile.local` next to it, which
 `setup.sh` also installs when present. Homebrew refuses to load formulae from
@@ -45,6 +47,23 @@ stow -t ~ zsh git tmux vim starship ghostty claude
 If real files already exist in `$HOME`, stow refuses to overwrite them. Either
 move them aside, or run `stow --adopt <pkg>` to pull them into the repo and then
 check `git diff`.
+
+## Daily history cleanup
+
+`zsh/.local/bin/zsh-history-clean` runs `zhc`, which removes duplicate commands
+from `~/.zsh_history` (the shell's own `HIST_IGNORE_DUPS` only catches
+back-to-back repeats), and deletes the `.zsh_history.zhc_backup_*` files zhc
+writes once they are a week old. `.zshrc` runs it from the first shell you open
+each day, using `~/.cache/zsh/history-clean.date` to remember the last run, so
+no cron or launchd is involved. Output goes to `~/.cache/zsh/history-clean.log`.
+
+```bash
+zsh-history-clean                     # clean now
+rm ~/.cache/zsh/history-clean.date    # make the next shell run it again
+```
+
+`zhc` is a cargo crate, so `setup.sh` needs `cargo` on `PATH` (rust is managed
+with asdf here, not Homebrew) and skips it with a note otherwise.
 
 ## Claude Code skills
 
