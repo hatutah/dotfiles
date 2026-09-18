@@ -14,5 +14,11 @@
 	gpgsign = true
 [init]
 	defaultBranch = main
+[fetch]
+	prune = true
+[core]
+	pager = less
+[pager]
+	grep = false
 [include]
 	path = ~/.gitconfig.local

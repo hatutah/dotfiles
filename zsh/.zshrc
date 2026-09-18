@@ -19,3 +19,6 @@ eval "$(zoxide init zsh)"
 source <(fzf --zsh)
 source "${HOMEBREW_PREFIX:-/opt/homebrew}/share/zsh-autosuggestions/zsh-autosuggestions.zsh"
 if command -v wt >/dev/null 2>&1; then eval "$(command wt config shell init zsh)"; fi
+
+# Machine/work-specific config, untracked
+[ -f ~/.zshrc.local ] && source ~/.zshrc.local
