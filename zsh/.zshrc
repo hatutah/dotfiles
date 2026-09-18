@@ -70,6 +70,13 @@ export PATH="${ASDF_DATA_DIR:-$HOME/.asdf}/shims:$PATH"
 export PATH="$HOME/.local/bin:$PATH"
 export PATH="$HOME/.antigravity-ide/antigravity-ide/bin:$PATH"
 
+# Dedupe history once a day, in the first shell of the day (zhc via ~/.local/bin/zsh-history-clean)
+_hc_stamp=~/.cache/zsh/history-clean.date
+if [[ ! -f $_hc_stamp || $(<$_hc_stamp) != $(date +%F) ]] && command -v zhc >/dev/null 2>&1; then
+  zsh-history-clean && date +%F >| $_hc_stamp
+fi
+unset _hc_stamp
+
 # Prompt
 eval "$(starship init zsh)"
 
