@@ -22,7 +22,8 @@ git clone git@github.com:hatutah/dotfiles.git ~/hatutah/dotfiles
 
 `setup.sh` installs the Xcode Command Line Tools and Homebrew if they are
 missing, installs everything in the `Brewfile` (stow, tmux, asdf, fzf, zoxide,
-worktrunk, gh, lazygit, direnv, uv and more), installs
+worktrunk, gh, lazygit, direnv, uv and more), installs Rust with
+[rustup](https://rustup.rs) if `cargo` is missing, installs
 [zsh-history-cleaner](https://github.com/haidaraM/zsh-history-cleaner) with
 cargo if `zhc` is missing, then links every package. To add
 a tool, add a line to the `Brewfile` and re-run `setup.sh`. Work or
@@ -62,8 +63,9 @@ zsh-history-clean                     # clean now
 rm ~/.cache/zsh/history-clean.date    # make the next shell run it again
 ```
 
-`zhc` is a cargo crate, so `setup.sh` needs `cargo` on `PATH` (rust is managed
-with asdf here, not Homebrew) and skips it with a note otherwise.
+`zhc` is a cargo crate. `setup.sh` installs Rust with rustup (the official
+installer, not Homebrew or asdf) before building it, and `zsh/.zshenv` puts
+`~/.cargo/bin` on `PATH`.
 
 ## Claude Code skills
 
