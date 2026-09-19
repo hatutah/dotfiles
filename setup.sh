@@ -56,7 +56,7 @@ if ! command -v zhc >/dev/null 2>&1; then
   if command -v cargo >/dev/null 2>&1; then
     log "Installing zsh-history-cleaner with cargo"
     cargo install zsh-history-cleaner
-    command -v asdf >/dev/null 2>&1 && asdf reshim rust || true
+    if command -v asdf >/dev/null 2>&1; then asdf reshim rust; fi
   else
     log "Skipping zsh-history-cleaner: cargo not found (install rust, re-run)"
   fi

@@ -94,6 +94,16 @@ Editing an existing skill needs no restow.
 Only `skills` is tracked from `~/.claude`; `settings.json`, history, projects,
 caches and sessions stay local and per machine.
 
+## Checks
+
+`./lint.sh` runs the static checks CI runs on every pull request
+(`.github/workflows/lint.yml`, on Linux): shell syntax and shellcheck for
+`setup.sh` and the scripts, `zsh -n` on the rc files, parse checks for the git,
+tmux, vim and starship configs, one link per skill, and a real `stow` into a
+scratch directory with a scan for broken links. It installs nothing and does
+not touch `$HOME`. It cannot tell whether the tools the configs load exist or
+whether a shell actually starts cleanly; that still needs a Mac.
+
 ## Common commands
 
 ```bash
