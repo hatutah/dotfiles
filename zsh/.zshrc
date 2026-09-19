@@ -23,6 +23,7 @@ setopt AUTO_CD AUTO_PUSHD PUSHD_IGNORE_DUPS   # bare dir name cd's; every cd fee
 alias -- -='cd -'
 for i in 1 2 3 4 5 6 7 8 9; do alias "$i"="cd -$i"; done; unset i
 alias -g ...='../..' ....='../../..' .....='../../../..'
+alias a='claude agents'                         # background-agent list
 
 # Colors
 export LSCOLORS="Gxfxcxdxbxegedabagacad"
