@@ -11,7 +11,8 @@ Each top-level folder is a stow package whose contents mirror `$HOME`.
 | `vim`  | `~/.vimrc` |
 | `starship` | `~/.config/starship.toml` |
 | `ghostty` | `~/.config/ghostty/config` |
-| `claude` | `~/.claude/skills/<skill>` → `skills/<skill>` |
+| `claude` | `~/.claude/skills/<skill>` → `skills/<skill>`, `~/.claude/CLAUDE.md` → `agents/AGENTS.md` |
+| `codex` | `~/.codex/AGENTS.md` → `agents/AGENTS.md` |
 
 ## Install
 
@@ -48,6 +49,16 @@ stow -t ~ zsh git tmux vim starship ghostty claude
 If real files already exist in `$HOME`, stow refuses to overwrite them. Either
 move them aside, or run `stow --adopt <pkg>` to pull them into the repo and then
 check `git diff`.
+
+## Global agent instructions
+
+`agents/AGENTS.md` is the one real copy of the global instructions for coding
+agents. The `claude` and `codex` packages hold relative symlinks to it, so
+`~/.claude/CLAUDE.md` (Claude Code only falls back to `AGENTS.md` for project
+files) and `~/.codex/AGENTS.md` both resolve to it. Edit `agents/AGENTS.md`,
+never the links. If an app replaces a link with a real file, copy any changes
+into `agents/AGENTS.md`, delete the stray file and re-run `setup.sh` (don't use
+`--adopt` here, it would overwrite the repo's symlink with the real file).
 
 ## Daily history cleanup
 

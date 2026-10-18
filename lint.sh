@@ -33,7 +33,7 @@ skill_links() {   # every skills/<x> needs claude/.claude/skills/<x> -> ../../..
 }
 stow_layout() {   # stow for real into a scratch target and look for broken links
   local t rc=0; t=$(mktemp -d)
-  mkdir -p "$t/.claude/skills" "$t/.local/bin"   # real dirs on a Mac, as setup.sh makes them
+  mkdir -p "$t/.claude/skills" "$t/.codex" "$t/.local/bin"   # real dirs on a Mac, as setup.sh makes them
   stow -t "$t" "${PACKAGES[@]}" || rc=1
   local broken; broken=$(find "$t" -type l ! -exec test -e {} \; -print)
   [ -z "$broken" ] || { echo "broken links:"; echo "$broken"; rc=1; }
