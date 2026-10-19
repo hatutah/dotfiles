@@ -6,3 +6,5 @@
 
 # Written by Claude Code at runtime (synced skills); not ours to track
 claude/.claude/skills/synced/
+
+.claude/worktrees
