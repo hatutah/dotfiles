@@ -91,7 +91,7 @@ if command -v wt >/dev/null 2>&1; then eval "$(command wt config shell init zsh)
 # Put local settings in ~/.zshrc.local, e.g.
 #
 #   # GitHub token via 1Password, fetched on first use instead of at startup.
-#   # gh itself also has a keyring login; the wrapper matters for the
+#   # gh itself also has a keyring login; the wrapper matters for private
 #   # package registries used by npm/pnpm.
 #   # Run __gh_token before npm/pnpm if gh hasn't fetched the token yet.
 #   __gh_token() {
