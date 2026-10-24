@@ -149,3 +149,8 @@ Git ignores the include if the file is missing, but commits will fail until
 it exists because `commit.gpgsign` needs a key.
 
 Never commit secrets — keep tokens in 1Password or an untracked `~/.zshrc.local`.
+
+## License
+
+[MIT](LICENSE). Skills in `skills/` copied from other authors keep their
+original terms; see `skills/SOURCES.md`.
